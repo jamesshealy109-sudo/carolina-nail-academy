@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0a070b">
+  <meta name="theme-color" content="#08060a">
   <meta name="description" content="Carolina Nail Academy — bold, hands-on nail education for future professionals.">
-  <meta property="og:title" content="Carolina Nail Academy | Build Your Nail Career">
+  <meta property="og:title" content="Carolina Nail Academy | Make Your Mark">
   <meta property="og:description" content="Hands-on nail education, artistry, client care and state board preparation.">
   <meta property="og:type" content="website">
-  <title>Carolina Nail Academy | Build Your Nail Career</title>
+  <title>Carolina Nail Academy | Make Your Mark</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script defer src="script.js"></script>
 </head>
 <body>
+  <div class="cursor-glow" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="top">
@@ -29,10 +30,10 @@
 
       <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
         <a href="#program" data-scroll>Program</a>
-        <a href="#curriculum" data-scroll>What You’ll Learn</a>
+        <a href="#lab" data-scroll>Style Lab</a>
+        <a href="#curriculum" data-scroll>Skills</a>
         <a href="#experience" data-scroll>Experience</a>
-        <a href="#path" data-scroll>Your Path</a>
-        <a class="nav-cta" href="#contact" data-scroll>Request Info <span>↗</span></a>
+        <a class="nav-cta magnetic" href="#contact" data-scroll>Request Info <span>↗</span></a>
       </nav>
     </div>
   </header>
@@ -42,6 +43,8 @@
       <div class="hero-gridlines" aria-hidden="true"></div>
       <div class="hero-glow glow-one" aria-hidden="true"></div>
       <div class="hero-glow glow-two" aria-hidden="true"></div>
+      <div class="hero-word word-one" aria-hidden="true">CREATE</div>
+      <div class="hero-word word-two" aria-hidden="true">CREATE</div>
 
       <div class="shell hero-layout">
         <div class="hero-copy reveal">
@@ -50,8 +53,8 @@
           <p class="hero-lede">Train your hands. Sharpen your eye. Build the confidence to turn nail artistry into a real professional skill.</p>
 
           <div class="hero-actions">
-            <a class="button button-hot" href="#contact" data-scroll>Start Your Next Chapter <span>↗</span></a>
-            <a class="button button-ghost" href="#curriculum" data-scroll>See What You’ll Learn</a>
+            <a class="button button-hot magnetic" href="#contact" data-scroll>Start Your Next Chapter <span>↗</span></a>
+            <a class="button button-ghost" href="#lab" data-scroll>Play With The Style Lab</a>
           </div>
 
           <div class="hero-stats" aria-label="Program highlights">
@@ -65,6 +68,7 @@
           <div class="chrome-ring ring-one" aria-hidden="true"></div>
           <div class="chrome-ring ring-two" aria-hidden="true"></div>
           <div class="stage-card" data-tilt>
+            <div class="stage-badge">CNA / 2026</div>
             <div class="stage-label"><span>Carolina</span><strong>NAIL<br>ACADEMY</strong></div>
             <div class="hand-art" aria-hidden="true">
               <span class="nail n1"></span><span class="nail n2"></span><span class="nail n3"></span><span class="nail n4"></span><span class="nail n5"></span>
@@ -122,6 +126,45 @@
       </div>
     </section>
 
+    <section class="section style-lab" id="lab">
+      <div class="lab-noise" aria-hidden="true"></div>
+      <div class="shell lab-layout">
+        <div class="lab-copy reveal">
+          <p class="eyebrow">Interactive Style Lab</p>
+          <h2>FIND YOUR<br><em>SIGNATURE.</em></h2>
+          <p class="big-copy">Strong fundamentals open the door to personal style. Tap a shape, then switch the finish and watch the set change.</p>
+          <div class="shape-controls" role="group" aria-label="Choose a nail shape">
+            <button class="shape-button active" type="button" data-shape="almond">Almond</button>
+            <button class="shape-button" type="button" data-shape="coffin">Coffin</button>
+            <button class="shape-button" type="button" data-shape="square">Square</button>
+            <button class="shape-button" type="button" data-shape="stiletto">Stiletto</button>
+          </div>
+          <div class="finish-controls" role="group" aria-label="Choose a nail finish">
+            <button class="finish-button finish-pink active" type="button" data-finish="pink" aria-label="Pink chrome"></button>
+            <button class="finish-button finish-lime" type="button" data-finish="lime" aria-label="Lime electric"></button>
+            <button class="finish-button finish-black" type="button" data-finish="black" aria-label="Black chrome"></button>
+            <button class="finish-button finish-purple" type="button" data-finish="purple" aria-label="Purple aura"></button>
+          </div>
+          <p class="lab-caption"><span id="shape-name">Almond</span> / <span id="finish-name">Pink Chrome</span></p>
+        </div>
+
+        <div class="lab-stage reveal" aria-live="polite">
+          <div class="lab-plate" aria-hidden="true"></div>
+          <div class="lab-logo" aria-hidden="true">CNA</div>
+          <div class="lab-hand shape-almond finish-pink" id="lab-hand" aria-label="Interactive preview of selected nail shape and finish">
+            <span class="lab-finger lf1"><i></i></span>
+            <span class="lab-finger lf2"><i></i></span>
+            <span class="lab-finger lf3"><i></i></span>
+            <span class="lab-finger lf4"><i></i></span>
+            <span class="lab-finger lf5"><i></i></span>
+          </div>
+          <div class="lab-orbit orbit-a" aria-hidden="true"></div>
+          <div class="lab-orbit orbit-b" aria-hidden="true"></div>
+          <div class="lab-stamp"><span>STYLE</span><b>IS A SKILL.</b></div>
+        </div>
+      </div>
+    </section>
+
     <section class="section curriculum-section" id="curriculum">
       <div class="shell curriculum-head reveal">
         <p class="eyebrow">What You’ll Learn</p>
@@ -174,6 +217,10 @@
       </div>
     </section>
 
+    <section class="closing-punch" aria-hidden="true">
+      <div class="closing-track"><span>YOUR FUTURE LOOKS GOOD ON YOU.</span><span>YOUR FUTURE LOOKS GOOD ON YOU.</span></div>
+    </section>
+
     <section class="section contact-section" id="contact">
       <div class="contact-noise" aria-hidden="true"></div>
       <div class="shell contact-layout">
@@ -191,7 +238,7 @@
           <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
           <label>What do you want to know?<select name="interest"><option>Program details</option><option>Class schedules</option><option>Tuition & payment options</option><option>Admissions requirements</option><option>Schedule a tour</option></select></label>
           <label>Message<textarea name="message" rows="4" placeholder="Tell us what you're looking for."></textarea></label>
-          <button class="button form-button" type="submit">Request Information <span>↗</span></button>
+          <button class="button form-button magnetic" type="submit">Request Information <span>↗</span></button>
           <p class="form-note" id="form-note">Preview only — form delivery will be connected before launch.</p>
         </form>
       </div>
@@ -205,7 +252,7 @@
         <span class="brand-copy"><strong>Carolina Nail Academy</strong><small>Learn it. Own it. Make it yours.</small></span>
       </a>
 
-      <div class="footer-nav"><a href="#program" data-scroll>Program</a><a href="#curriculum" data-scroll>What You’ll Learn</a><a href="#experience" data-scroll>Experience</a><a href="#contact" data-scroll>Request Info</a></div>
+      <div class="footer-nav"><a href="#program" data-scroll>Program</a><a href="#lab" data-scroll>Style Lab</a><a href="#curriculum" data-scroll>Skills</a><a href="#contact" data-scroll>Request Info</a></div>
 
       <a class="strataworks-credit" href="https://strataworks.tech" target="_blank" rel="noopener noreferrer" aria-label="Website by StrataWorks" title="Website by StrataWorks">
         <span>Website by</span>
