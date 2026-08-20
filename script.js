@@ -13,12 +13,10 @@ menuToggle?.addEventListener('click', () => {
   nav?.classList.toggle('is-open', !open);
 });
 
-// Reliable internal navigation, including Home and Back to top.
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener('click', (event) => {
     const href = link.getAttribute('href');
     if (!href || href === '#') return;
-
     const target = document.querySelector(href);
     if (!target) return;
 
@@ -52,7 +50,6 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
-
 document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
 const sections = [...document.querySelectorAll('main section[id]')];
@@ -66,7 +63,10 @@ const activeObserver = new IntersectionObserver((entries) => {
 }, { rootMargin: '-35% 0px -55%', threshold: 0 });
 sections.forEach((section) => activeObserver.observe(section));
 
-const canTilt = window.matchMedia('(pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const finePointer = window.matchMedia('(pointer:fine)').matches;
+const canTilt = finePointer && !reduceMotion;
+
 if (canTilt) {
   document.querySelectorAll('[data-tilt]').forEach((card) => {
     card.addEventListener('pointermove', (event) => {
@@ -79,7 +79,65 @@ if (canTilt) {
       card.style.transform = '';
     });
   });
+
+  const glow = document.querySelector('.cursor-glow');
+  window.addEventListener('pointermove', (event) => {
+    if (!glow) return;
+    glow.style.left = `${event.clientX}px`;
+    glow.style.top = `${event.clientY}px`;
+    glow.style.opacity = '1';
+  }, { passive: true });
+
+  document.querySelectorAll('.magnetic').forEach((el) => {
+    el.addEventListener('pointermove', (event) => {
+      const rect = el.getBoundingClientRect();
+      const x = event.clientX - (rect.left + rect.width / 2);
+      const y = event.clientY - (rect.top + rect.height / 2);
+      el.style.transform = `translate(${x * 0.08}px, ${y * 0.12}px)`;
+    });
+    el.addEventListener('pointerleave', () => {
+      el.style.transform = '';
+    });
+  });
 }
+
+const shapeButtons = [...document.querySelectorAll('[data-shape]')];
+const finishButtons = [...document.querySelectorAll('[data-finish]')];
+const labHand = document.querySelector('#lab-hand');
+const shapeName = document.querySelector('#shape-name');
+const finishName = document.querySelector('#finish-name');
+
+const shapeLabels = {
+  almond: 'Almond',
+  coffin: 'Coffin',
+  square: 'Square',
+  stiletto: 'Stiletto'
+};
+const finishLabels = {
+  pink: 'Pink Chrome',
+  lime: 'Electric Lime',
+  black: 'Black Chrome',
+  purple: 'Purple Aura'
+};
+
+function setShape(shape) {
+  if (!labHand) return;
+  Object.keys(shapeLabels).forEach((key) => labHand.classList.remove(`shape-${key}`));
+  labHand.classList.add(`shape-${shape}`);
+  shapeButtons.forEach((button) => button.classList.toggle('active', button.dataset.shape === shape));
+  if (shapeName) shapeName.textContent = shapeLabels[shape] || shape;
+}
+
+function setFinish(finish) {
+  if (!labHand) return;
+  Object.keys(finishLabels).forEach((key) => labHand.classList.remove(`finish-${key}`));
+  labHand.classList.add(`finish-${finish}`);
+  finishButtons.forEach((button) => button.classList.toggle('active', button.dataset.finish === finish));
+  if (finishName) finishName.textContent = finishLabels[finish] || finish;
+}
+
+shapeButtons.forEach((button) => button.addEventListener('click', () => setShape(button.dataset.shape)));
+finishButtons.forEach((button) => button.addEventListener('click', () => setFinish(button.dataset.finish)));
 
 document.querySelector('#interest-form')?.addEventListener('submit', (event) => {
   event.preventDefault();
