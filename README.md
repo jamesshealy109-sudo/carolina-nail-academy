@@ -1,15 +1,15 @@
 # Carolina Nail Academy Website
 
-Static website concept for Carolina Nail Academy.
+Brand-led static website for Carolina Nail Academy, built around the academy's circular business logo, gold-script pink-bottle wordmark, and the message **More Than Nails—A Career**.
 
 ## Included
 
-- Responsive one-page design
-- Mobile navigation
-- Program, curriculum, experience, and admissions sections
-- State-board-prep positioning based on the supplied Wix preview
-- Contact-interest form UI
-- Clickable StrataWorks footer logo linking to https://strataworks.tech
+- Responsive one-page design with desktop and mobile navigation
+- Circular business logo and pink-bottle campaign wordmark
+- Program, state board preparation, experience, career path, and admissions sections
+- Interactive nail-finish studio
+- Keyboard-friendly controls, visible focus states, and reduced-motion support
+- Contact-interest form preview
 - No third-party front-end dependencies
 - GitHub Pages friendly (`index.html` at the repository root)
 
@@ -24,6 +24,6 @@ Confirm or replace the academy's:
 5. Tuition / payment information
 6. Class schedules and upcoming start dates
 7. Contact form delivery endpoint
-8. Official logo and photography, if supplied
+8. Final high-resolution production files for the selected circular logo and wordmark
 
 The contact form is intentionally in preview mode and does not send submissions yet.

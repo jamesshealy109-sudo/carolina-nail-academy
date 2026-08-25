@@ -1,16 +1,26 @@
+document.documentElement.classList.add('has-js');
+
 const header = document.querySelector('.site-header');
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#site-nav');
 
 function closeMenu() {
   nav?.classList.remove('is-open');
-  menuToggle?.setAttribute('aria-expanded', 'false');
+  if (menuToggle) {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Open navigation');
+  }
 }
 
 menuToggle?.addEventListener('click', () => {
-  const open = menuToggle.getAttribute('aria-expanded') === 'true';
-  menuToggle.setAttribute('aria-expanded', String(!open));
-  nav?.classList.toggle('is-open', !open);
+  const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+  menuToggle.setAttribute('aria-expanded', String(!isOpen));
+  menuToggle.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
+  nav?.classList.toggle('is-open', !isOpen);
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeMenu();
 });
 
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
@@ -23,129 +33,94 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     event.preventDefault();
     closeMenu();
 
-    if (href === '#home' || href === '#top') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      history.replaceState(null, '', window.location.pathname + window.location.search);
-      return;
-    }
-
     const headerHeight = header?.offsetHeight || 0;
-    const top = target.getBoundingClientRect().top + window.scrollY - headerHeight + 1;
-    window.scrollTo({ top, behavior: 'smooth' });
-    history.replaceState(null, '', href);
+    const destination = href === '#home'
+      ? 0
+      : target.getBoundingClientRect().top + window.scrollY - headerHeight + 1;
+
+    window.scrollTo({ top: destination, behavior: 'smooth' });
+    history.replaceState(null, '', href === '#home' ? window.location.pathname : href);
   });
 });
 
 function updateHeader() {
-  header?.classList.toggle('scrolled', window.scrollY > 18);
+  header?.classList.toggle('is-scrolled', window.scrollY > 18);
 }
+
 updateHeader();
 window.addEventListener('scroll', updateHeader, { passive: true });
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reveals = document.querySelectorAll('.reveal');
+
+if (reducedMotion || !('IntersectionObserver' in window)) {
+  reveals.forEach((element) => element.classList.add('is-visible'));
+} else {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
       entry.target.classList.add('is-visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px' });
-document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-const sections = [...document.querySelectorAll('main section[id]')];
-const navLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
-const activeObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    const id = entry.target.id;
-    navLinks.forEach((link) => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
-  });
-}, { rootMargin: '-35% 0px -55%', threshold: 0 });
-sections.forEach((section) => activeObserver.observe(section));
-
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const finePointer = window.matchMedia('(pointer:fine)').matches;
-const canTilt = finePointer && !reduceMotion;
-
-if (canTilt) {
-  document.querySelectorAll('[data-tilt]').forEach((card) => {
-    card.addEventListener('pointermove', (event) => {
-      const rect = card.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - 0.5;
-      const y = (event.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `rotateX(${y * -6}deg) rotateY(${x * 7}deg) translateY(-2px)`;
+      revealObserver.unobserve(entry.target);
     });
-    card.addEventListener('pointerleave', () => {
-      card.style.transform = '';
-    });
-  });
+  }, { threshold: 0.1, rootMargin: '0px 0px -35px' });
 
-  const glow = document.querySelector('.cursor-glow');
-  window.addEventListener('pointermove', (event) => {
-    if (!glow) return;
-    glow.style.left = `${event.clientX}px`;
-    glow.style.top = `${event.clientY}px`;
-    glow.style.opacity = '1';
-  }, { passive: true });
-
-  document.querySelectorAll('.magnetic').forEach((el) => {
-    el.addEventListener('pointermove', (event) => {
-      const rect = el.getBoundingClientRect();
-      const x = event.clientX - (rect.left + rect.width / 2);
-      const y = event.clientY - (rect.top + rect.height / 2);
-      el.style.transform = `translate(${x * 0.08}px, ${y * 0.12}px)`;
-    });
-    el.addEventListener('pointerleave', () => {
-      el.style.transform = '';
-    });
-  });
+  reveals.forEach((element) => revealObserver.observe(element));
 }
 
-const shapeButtons = [...document.querySelectorAll('[data-shape]')];
+const pageSections = [...document.querySelectorAll('main section[id]')];
+const navLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+
+if ('IntersectionObserver' in window) {
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      navLinks.forEach((link) => {
+        const isCurrent = link.getAttribute('href') === `#${entry.target.id}`;
+        link.classList.toggle('is-active', isCurrent);
+        if (isCurrent) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    });
+  }, { rootMargin: '-35% 0px -55%', threshold: 0 });
+
+  pageSections.forEach((section) => sectionObserver.observe(section));
+}
+
+const finishLabels = {
+  blue: 'Carolina Blue',
+  lime: 'Electric Lime',
+  pink: 'Pink Sparkle',
+  gold: 'Gold Chrome'
+};
+
 const finishButtons = [...document.querySelectorAll('[data-finish]')];
-const labHand = document.querySelector('#lab-hand');
-const shapeName = document.querySelector('#shape-name');
+const nailStage = document.querySelector('#nail-stage');
 const finishName = document.querySelector('#finish-name');
 
-const shapeLabels = {
-  almond: 'Almond',
-  coffin: 'Coffin',
-  square: 'Square',
-  stiletto: 'Stiletto'
-};
-const finishLabels = {
-  pink: 'Pink Chrome',
-  lime: 'Electric Lime',
-  black: 'Black Chrome',
-  purple: 'Purple Aura'
-};
+finishButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const finish = button.dataset.finish;
+    if (!finish || !nailStage) return;
 
-function setShape(shape) {
-  if (!labHand) return;
-  Object.keys(shapeLabels).forEach((key) => labHand.classList.remove(`shape-${key}`));
-  labHand.classList.add(`shape-${shape}`);
-  shapeButtons.forEach((button) => button.classList.toggle('active', button.dataset.shape === shape));
-  if (shapeName) shapeName.textContent = shapeLabels[shape] || shape;
-}
+    Object.keys(finishLabels).forEach((key) => nailStage.classList.remove(`finish-${key}`));
+    nailStage.classList.add(`finish-${finish}`);
 
-function setFinish(finish) {
-  if (!labHand) return;
-  Object.keys(finishLabels).forEach((key) => labHand.classList.remove(`finish-${key}`));
-  labHand.classList.add(`finish-${finish}`);
-  finishButtons.forEach((button) => button.classList.toggle('active', button.dataset.finish === finish));
-  if (finishName) finishName.textContent = finishLabels[finish] || finish;
-}
+    finishButtons.forEach((item) => {
+      const isActive = item === button;
+      item.classList.toggle('is-active', isActive);
+      item.setAttribute('aria-pressed', String(isActive));
+    });
 
-shapeButtons.forEach((button) => button.addEventListener('click', () => setShape(button.dataset.shape)));
-finishButtons.forEach((button) => button.addEventListener('click', () => setFinish(button.dataset.finish)));
+    if (finishName) finishName.textContent = finishLabels[finish] || finish;
+  });
+});
 
 document.querySelector('#interest-form')?.addEventListener('submit', (event) => {
   event.preventDefault();
   const note = document.querySelector('#form-note');
-  if (note) {
-    note.textContent = 'Looks good — this preview form is ready to be connected to the academy email before launch.';
-    note.classList.add('success');
-  }
+  if (!note) return;
+  note.textContent = 'Your information looks ready. Form delivery will be connected before launch.';
+  note.classList.add('is-success');
 });
 
 const year = document.querySelector('#year');
