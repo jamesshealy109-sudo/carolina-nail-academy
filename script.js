@@ -89,8 +89,8 @@ if ('IntersectionObserver' in window) {
 const finishLabels = {
   blue: 'Carolina Blue',
   lime: 'Electric Lime',
-  pink: 'Pink Sparkle',
-  gold: 'Gold Chrome'
+  graphite: 'Graphite',
+  chrome: 'Chrome'
 };
 
 const finishButtons = [...document.querySelectorAll('[data-finish]')];
