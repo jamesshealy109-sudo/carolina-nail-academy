@@ -1,46 +1,83 @@
 document.documentElement.classList.add('has-js');
 
-// Final responsive guard for the LEARN / CREATE / SUCCEED card.
-// The original display type was too wide at narrower breakpoints, so keep
-// the words on one line while scaling the type and card padding to fit.
-const layoutFixes = document.createElement('style');
-layoutFixes.textContent = `
-  .career-card {
-    padding: 34px 28px !important;
+function setupCareerCard() {
+  const card = document.querySelector('.career-card');
+  const title = card?.querySelector(':scope > strong');
+  if (!card || !title) return;
+
+  // Build each word as its own line so it can be measured independently.
+  title.innerHTML = '<span>LEARN.</span><span>CREATE.</span><em>SUCCEED.</em>';
+
+  Object.assign(card.style, {
+    padding: '36px 30px',
+    right: '8px'
+  });
+
+  Object.assign(title.style, {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    gap: '2px',
+    width: '100%',
+    maxWidth: '100%',
+    margin: '0',
+    lineHeight: '1',
+    letterSpacing: '0'
+  });
+
+  const lines = [...title.children];
+  lines.forEach((line) => {
+    Object.assign(line.style, {
+      display: 'block',
+      width: 'max-content',
+      maxWidth: 'none',
+      whiteSpace: 'nowrap',
+      fontFamily: 'Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Narrow", sans-serif',
+      fontStyle: 'normal',
+      fontWeight: '900',
+      lineHeight: '.88',
+      letterSpacing: '-.015em'
+    });
+  });
+
+  const bottle = document.querySelector('.polish-bottle');
+  if (bottle) {
+    bottle.style.right = '-18px';
+    bottle.style.top = '20px';
+    bottle.style.transform = 'rotate(9deg) scale(.76)';
+    bottle.style.transformOrigin = 'top right';
   }
-  .career-card > strong {
-    width: 100% !important;
-    max-width: 100% !important;
-    font-size: clamp(2rem, 4.2vw, 3.75rem) !important;
-    line-height: .92 !important;
-    letter-spacing: -.075em !important;
-    white-space: nowrap !important;
+
+  function fitCareerWords() {
+    const computed = getComputedStyle(card);
+    const innerWidth = card.clientWidth
+      - parseFloat(computed.paddingLeft || 0)
+      - parseFloat(computed.paddingRight || 0);
+
+    // Reserve a little extra room on LEARN for the bottle overlapping the top-right.
+    const availableWidths = [Math.max(120, innerWidth - 56), innerWidth, innerWidth];
+    const startingSizes = [82, 76, 68];
+
+    lines.forEach((line, index) => {
+      let size = startingSizes[index];
+      const minSize = 24;
+      line.style.fontSize = `${size}px`;
+
+      while (line.getBoundingClientRect().width > availableWidths[index] && size > minSize) {
+        size -= 1;
+        line.style.fontSize = `${size}px`;
+      }
+    });
   }
-  @media (max-width: 820px) {
-    .career-card {
-      inset: 20px 22px 48px 0 !important;
-      padding: 30px 24px !important;
-    }
-    .career-card > strong {
-      font-size: clamp(2rem, 6.4vw, 3.2rem) !important;
-    }
+
+  requestAnimationFrame(fitCareerWords);
+  window.addEventListener('resize', fitCareerWords, { passive: true });
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(fitCareerWords).observe(card);
   }
-  @media (max-width: 540px) {
-    .career-card {
-      right: 10px !important;
-      padding: 26px 20px !important;
-    }
-    .career-card > strong {
-      font-size: clamp(1.85rem, 6.5vw, 2.25rem) !important;
-      letter-spacing: -.08em !important;
-    }
-    .career-card > div span {
-      padding: 7px 8px !important;
-      font-size: .52rem !important;
-    }
-  }
-`;
-document.head.appendChild(layoutFixes);
+}
+
+setupCareerCard();
 
 const header = document.querySelector('.site-header');
 const menuToggle = document.querySelector('.menu-toggle');
