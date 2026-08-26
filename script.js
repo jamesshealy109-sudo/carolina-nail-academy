@@ -1,5 +1,47 @@
 document.documentElement.classList.add('has-js');
 
+// Final responsive guard for the LEARN / CREATE / SUCCEED card.
+// The original display type was too wide at narrower breakpoints, so keep
+// the words on one line while scaling the type and card padding to fit.
+const layoutFixes = document.createElement('style');
+layoutFixes.textContent = `
+  .career-card {
+    padding: 34px 28px !important;
+  }
+  .career-card > strong {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: clamp(2rem, 4.2vw, 3.75rem) !important;
+    line-height: .92 !important;
+    letter-spacing: -.075em !important;
+    white-space: nowrap !important;
+  }
+  @media (max-width: 820px) {
+    .career-card {
+      inset: 20px 22px 48px 0 !important;
+      padding: 30px 24px !important;
+    }
+    .career-card > strong {
+      font-size: clamp(2rem, 6.4vw, 3.2rem) !important;
+    }
+  }
+  @media (max-width: 540px) {
+    .career-card {
+      right: 10px !important;
+      padding: 26px 20px !important;
+    }
+    .career-card > strong {
+      font-size: clamp(1.85rem, 6.5vw, 2.25rem) !important;
+      letter-spacing: -.08em !important;
+    }
+    .career-card > div span {
+      padding: 7px 8px !important;
+      font-size: .52rem !important;
+    }
+  }
+`;
+document.head.appendChild(layoutFixes);
+
 const header = document.querySelector('.site-header');
 const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#site-nav');
