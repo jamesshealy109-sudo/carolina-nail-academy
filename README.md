@@ -19,11 +19,17 @@ Confirm or replace the academy's:
 
 1. Phone number
 2. Email address
-3. Physical address / service area
-4. Exact program hours and admissions requirements
-5. Tuition / payment information
-6. Class schedules and upcoming start dates
-7. Contact form delivery endpoint
-8. Final high-resolution production files for the selected circular logo and wordmark
+3. Tuition / payment information
+4. Upcoming start dates and current class availability
+5. Contact form delivery endpoint
+6. Final high-resolution production files for the selected circular logo and wordmark
+
+Confirmed program information now included on the site:
+
+- 300-hour Nail Technology Program
+- Minimum age: 16
+- Full-time day program: 15 weeks, Monday–Thursday, 9:00 AM–3:00 PM, 20 hours per week, with a one-hour lunch
+- Part-time evening program: 25 weeks, Monday–Thursday, 6:00 PM–9:00 PM, 12 hours per week
+- 3027 Platt Springs Rd, West Columbia, SC 29170
 
 The contact form is intentionally in preview mode and does not send submissions yet.

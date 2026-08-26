@@ -118,6 +118,32 @@ h2 { font-size: clamp(3.2rem, 6.4vw, 6.8rem); line-height: .86; }
 .program-section { background: #fbf0f5; }
 .section-heading { display: grid; grid-template-columns: 1.35fr .65fr; align-items: end; gap: 50px; }
 .section-heading > p { max-width: 500px; margin: 0 0 6px; color: var(--muted); font-size: 1.03rem; }
+.program-facts { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 58px; border: 1px solid rgba(9,15,22,.1); border-radius: 28px; background: var(--white); box-shadow: 0 18px 50px rgba(10,24,38,.06); }
+.program-facts article { min-height: 178px; display: flex; flex-direction: column; justify-content: space-between; gap: 25px; padding: 28px; }
+.program-facts article + article { border-left: 1px solid rgba(9,15,22,.1); }
+.program-facts strong { font-family: var(--display); font-size: clamp(2rem, 3.4vw, 3.7rem); line-height: .9; color: var(--blue); text-transform: uppercase; }
+.program-facts article:nth-child(2) strong { color: var(--pink); }
+.program-facts article:nth-child(3) strong { color: #6d8b07; }
+.program-facts article:nth-child(4) strong { font-size: clamp(1.6rem, 2.7vw, 2.8rem); color: var(--ink); }
+.program-facts span { color: var(--muted); font-size: .75rem; font-weight: 850; line-height: 1.45; letter-spacing: .06em; text-transform: uppercase; }
+.schedule-panel { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(36px, 6vw, 84px); margin-top: 22px; padding: clamp(30px, 5vw, 68px); border-radius: 32px; background: var(--ink); color: var(--white); box-shadow: 0 26px 70px rgba(9,15,22,.16); }
+.schedule-intro h3, .curriculum-heading h3 { margin: 0; font-family: var(--display); font-size: clamp(2.5rem, 4vw, 4.4rem); line-height: .9; text-transform: uppercase; }
+.schedule-intro h3 em { color: var(--blue-bright); font-style: normal; }
+.schedule-intro > p:last-child { max-width: 470px; margin-top: 24px; color: #aeb9c1; line-height: 1.7; }
+.schedule-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.schedule-card { overflow: hidden; border-radius: 24px; background: var(--white); color: var(--ink); }
+.schedule-card > div { display: flex; flex-direction: column; gap: 4px; padding: 24px; background: linear-gradient(145deg, #2371cb, #64b5ff); color: var(--white); }
+.schedule-night > div { background: linear-gradient(145deg, #86a91b, var(--lime)); color: var(--ink); }
+.schedule-card > div span { font-size: .62rem; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; opacity: .78; }
+.schedule-card > div strong { font-family: var(--display); font-size: clamp(1.65rem, 2.4vw, 2.5rem); line-height: 1; text-transform: uppercase; }
+.schedule-card dl { margin: 0; padding: 14px 24px 22px; }
+.schedule-card dl > div { display: flex; justify-content: space-between; gap: 18px; padding: 12px 0; border-bottom: 1px solid rgba(9,15,22,.1); }
+.schedule-card dl > div:last-child { border-bottom: 0; }
+.schedule-card dt { color: var(--muted); font-size: .64rem; font-weight: 850; letter-spacing: .07em; text-transform: uppercase; }
+.schedule-card dd { margin: 0; font-size: .76rem; font-weight: 900; text-align: right; }
+.curriculum-heading { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-top: 76px; }
+.curriculum-heading .eyebrow { margin-bottom: 5px; }
+.curriculum-heading h3 { font-size: clamp(2.1rem, 3.6vw, 3.8rem); }
 .program-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 68px; }
 .program-card { position: relative; min-height: 500px; overflow: hidden; padding: 34px; border-radius: 32px; box-shadow: 0 18px 50px rgba(10,24,38,.08); }
 .program-card::after { content: ""; position: absolute; right: -90px; bottom: -100px; width: 270px; height: 270px; border: 24px solid rgba(255,255,255,.15); border-radius: 50%; }
@@ -271,6 +297,10 @@ footer { padding: 50px 0 24px; background: #05070a; color: #9ca7ae; }
   .art-frame { inset: 28px 10px 68px 10px; }
   .career-stamp { right: -2px; }
   .section-heading { grid-template-columns: 1fr; align-items: start; gap: 24px; }
+  .program-facts { grid-template-columns: repeat(2, 1fr); }
+  .program-facts article:nth-child(3) { border-left: 0; border-top: 1px solid rgba(9,15,22,.1); }
+  .program-facts article:nth-child(4) { border-top: 1px solid rgba(9,15,22,.1); }
+  .schedule-panel { grid-template-columns: 1fr; }
   .program-grid { grid-template-columns: 1fr; }
   .program-card { min-height: 460px; }
   .nail-stage { min-height: 560px; }
@@ -296,6 +326,13 @@ footer { padding: 50px 0 24px; background: #05070a; color: #9ca7ae; }
   .polish-bottle { right: -2px; transform: rotate(11deg) scale(.82); transform-origin: top right; }
   .program-card { min-height: 430px; padding: 26px; }
   .program-card h3 { margin-top: 56px; }
+  .program-facts { grid-template-columns: 1fr; }
+  .program-facts article { min-height: 145px; }
+  .program-facts article + article { border-left: 0; border-top: 1px solid rgba(9,15,22,.1); }
+  .schedule-options { grid-template-columns: 1fr; }
+  .schedule-panel { padding: 26px 20px; }
+  .curriculum-heading { display: block; }
+  .curriculum-heading h3 { margin-top: 12px; }
   .finish-button { font-size: .72rem; }
   .nail-stage { min-height: 470px; border-radius: 34px; }
   .nail-set { transform: translateX(-50%) rotate(-6deg) scale(.64); }
