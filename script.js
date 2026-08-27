@@ -165,6 +165,39 @@ if ('IntersectionObserver' in window) {
   pageSections.forEach((section) => sectionObserver.observe(section));
 }
 
+const finishNames = {
+  blue: 'Carolina Blue',
+  lime: 'Electric Lime',
+  graphite: 'Graphite',
+  chrome: 'Chrome'
+};
+
+const finishButtons = [...document.querySelectorAll('[data-finish]')];
+const studioHand = document.querySelector('#studio-hand');
+const finishName = document.querySelector('#finish-name');
+
+finishButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const finish = button.dataset.finish;
+    const nextSrc = button.dataset.src;
+    if (!finish || !nextSrc || !studioHand || button.classList.contains('is-active')) return;
+
+    studioHand.classList.add('is-changing');
+    studioHand.addEventListener('load', () => {
+      studioHand.classList.remove('is-changing');
+    }, { once: true });
+    studioHand.src = nextSrc;
+    studioHand.alt = `Professional ${finishNames[finish] || finish} manicure on a natural hand`;
+
+    finishButtons.forEach((item) => {
+      const isActive = item === button;
+      item.classList.toggle('is-active', isActive);
+      item.setAttribute('aria-pressed', String(isActive));
+    });
+    if (finishName) finishName.textContent = finishNames[finish] || finish;
+  });
+});
+
 document.querySelector('#interest-form')?.addEventListener('submit', (event) => {
   event.preventDefault();
   const note = document.querySelector('#form-note');
