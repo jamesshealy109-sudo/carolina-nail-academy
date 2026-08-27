@@ -202,12 +202,23 @@ finishButtons.forEach((button) => {
   });
 });
 
-document.querySelector('#interest-form')?.addEventListener('submit', (event) => {
-  event.preventDefault();
+const interestForm = document.querySelector('#interest-form');
+const formNote = document.querySelector('#form-note');
+
+if (new URLSearchParams(window.location.search).get('submitted') === '1' && formNote) {
+  formNote.textContent = 'Thank you! Your request has been sent to Carolina Nail Academy.';
+  formNote.classList.add('is-success');
+}
+
+interestForm?.addEventListener('submit', () => {
+  const button = interestForm.querySelector('button[type="submit"]');
+  if (button) {
+    button.disabled = true;
+    button.textContent = 'Sending…';
+  }
   const note = document.querySelector('#form-note');
   if (!note) return;
-  note.textContent = 'Your information looks ready. Form delivery will be connected before launch.';
-  note.classList.add('is-success');
+  note.textContent = 'Sending your request securely…';
 });
 
 const year = document.querySelector('#year');

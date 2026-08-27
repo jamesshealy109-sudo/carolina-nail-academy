@@ -242,6 +242,7 @@ h2 { font-size: clamp(3.2rem, 6.4vw, 6.8rem); line-height: .86; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .interest-form label { display: grid; gap: 7px; margin-bottom: 12px; color: #b5c0c8; font-size: .62rem; font-weight: 850; letter-spacing: .1em; text-transform: uppercase; }
 .interest-form input, .interest-form select, .interest-form textarea { width: 100%; padding: 14px; border: 1px solid rgba(255,255,255,.15); border-radius: 12px; outline: none; background: rgba(255,255,255,.07); color: var(--white); }
+.interest-form .form-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; padding: 0; opacity: 0; pointer-events: none; }
 .interest-form select option { color: var(--ink); }
 .interest-form input:focus, .interest-form select:focus, .interest-form textarea:focus { border-color: var(--pink); box-shadow: 0 0 0 3px rgba(243,84,155,.2); }
 .interest-form textarea { min-height: 108px; resize: vertical; }
