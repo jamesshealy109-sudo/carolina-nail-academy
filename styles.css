@@ -188,6 +188,11 @@ h2 { font-size: clamp(3.2rem, 6.4vw, 6.8rem); line-height: .86; }
 .prep-section { background: var(--white); }
 .prep-grid { display: grid; grid-template-columns: 1.04fr .96fr; align-items: center; gap: clamp(52px, 8vw, 105px); }
 .prep-copy > p:not(.eyebrow) { max-width: 670px; }
+.prep-open-callout { max-width: 690px; margin-top: 30px; padding: 24px 26px; display: grid; gap: 10px; border-left: 6px solid var(--lime); border-radius: 0 24px 24px 0; background: linear-gradient(135deg, #edf5fb, #f4f8df); box-shadow: 0 18px 44px rgba(23,55,87,.09); }
+.prep-open-callout > p { margin: 0; color: #2868b8; font-size: .68rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+.prep-open-callout > strong { max-width: 590px; font-family: var(--display); font-size: clamp(1.35rem, 2vw, 1.8rem); line-height: 1.15; text-transform: uppercase; }
+.prep-open-callout > span { color: var(--muted); line-height: 1.65; }
+.prep-open-callout .button { width: fit-content; margin-top: 8px; }
 .prep-list { margin-top: 42px; border-top: 1px solid var(--line); }
 .prep-list > div { display: grid; grid-template-columns: 46px 1fr; gap: 18px; padding: 24px 0; border-bottom: 1px solid var(--line); }
 .prep-list span { color: #2667b8; font-size: .68rem; font-weight: 900; letter-spacing: .14em; }
@@ -333,6 +338,8 @@ footer { padding: 50px 0 24px; background: #05070a; color: #9ca7ae; }
   .studio-photo figcaption strong { max-width: 190px; font-size: 1.1rem; text-align: left; }
   .prep-visual { min-height: 440px; }
   .prep-seal { width: 116px; height: 116px; }
+  .prep-open-callout { padding: 22px; }
+  .prep-open-callout .button { width: 100%; }
   .form-row { grid-template-columns: 1fr; }
   .interest-form { padding: 22px; }
 }
