@@ -165,35 +165,6 @@ if ('IntersectionObserver' in window) {
   pageSections.forEach((section) => sectionObserver.observe(section));
 }
 
-const finishLabels = {
-  blue: 'Carolina Blue',
-  lime: 'Electric Lime',
-  graphite: 'Graphite',
-  chrome: 'Chrome'
-};
-
-const finishButtons = [...document.querySelectorAll('[data-finish]')];
-const nailStage = document.querySelector('#nail-stage');
-const finishName = document.querySelector('#finish-name');
-
-finishButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    const finish = button.dataset.finish;
-    if (!finish || !nailStage) return;
-
-    Object.keys(finishLabels).forEach((key) => nailStage.classList.remove(`finish-${key}`));
-    nailStage.classList.add(`finish-${finish}`);
-
-    finishButtons.forEach((item) => {
-      const isActive = item === button;
-      item.classList.toggle('is-active', isActive);
-      item.setAttribute('aria-pressed', String(isActive));
-    });
-
-    if (finishName) finishName.textContent = finishLabels[finish] || finish;
-  });
-});
-
 document.querySelector('#interest-form')?.addEventListener('submit', (event) => {
   event.preventDefault();
   const note = document.querySelector('#form-note');
