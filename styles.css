@@ -171,6 +171,10 @@ h2 { font-size: clamp(3.2rem, 6.4vw, 6.8rem); line-height: .86; }
 .swatch-lime { background: linear-gradient(145deg, #f4ffc5, #8ced00, #3f7900); }
 .swatch-graphite { background: linear-gradient(145deg, #d9dee2, #5f6870, #171c21); }
 .swatch-chrome { background: linear-gradient(145deg, #fff, #cfd5d9 35%, #717b84 65%, #f7f9fa); }
+.swatch-pink-glitter { background: radial-gradient(circle at 35% 30%, #fff 0 5%, transparent 7%), linear-gradient(145deg, #ff9dcc, #f0087e 58%, #7f174f); }
+.swatch-classic-red { background: linear-gradient(145deg, #ff8a83, #d10b16 55%, #69030a); }
+.swatch-french-tip { background: linear-gradient(155deg, #fff 0 30%, #f4d9dd 32% 78%, #b98d92); }
+.swatch-gold-shimmer { background: radial-gradient(circle at 35% 30%, #fff7bd 0 4%, transparent 6%), linear-gradient(145deg, #fff2a6, #cf951c 58%, #67430a); }
 .finish-label { margin-top: 16px; color: #72818b; font-size: .66rem; font-weight: 850; text-transform: uppercase; letter-spacing: .13em; }
 .studio-photo { position: relative; width: min(100%, 480px); aspect-ratio: 2 / 3; justify-self: center; margin: 0; overflow: hidden; border: 1px solid rgba(255,255,255,.14); border-radius: 52px; background: #080c11; box-shadow: 0 50px 110px rgba(0,0,0,.45); isolation: isolate; }
 .studio-photo::before { content: ""; position: absolute; z-index: 2; inset: 0; background: linear-gradient(180deg, transparent 52%, rgba(2,6,10,.88) 100%); pointer-events: none; }

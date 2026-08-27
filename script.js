@@ -169,7 +169,11 @@ const finishNames = {
   blue: 'Carolina Blue',
   lime: 'Electric Lime',
   graphite: 'Graphite',
-  chrome: 'Chrome'
+  chrome: 'Chrome',
+  'pink-glitter': 'Pink Glitter',
+  'classic-red': 'Classic Red',
+  'french-tip': 'French Tip',
+  'gold-shimmer': 'Gold Shimmer'
 };
 
 const finishButtons = [...document.querySelectorAll('[data-finish]')];
