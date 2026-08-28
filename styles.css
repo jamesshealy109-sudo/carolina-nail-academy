@@ -314,7 +314,7 @@ footer { padding: 50px 0 24px; background: #05070a; color: #9ca7ae; }
 }
 
 @media (max-width: 540px) {
-  .brand-name small { display: none; }
+  .brand-name small { display: block; margin-top: 3px; font-size: .5rem; letter-spacing: .22em; }
   .hero-proof { display: grid; grid-template-columns: 1fr 1fr; }
   .hero-proof span:last-child { grid-column: 1 / -1; }
   .hero-visual { min-height: 465px; }
