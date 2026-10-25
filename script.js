@@ -205,6 +205,21 @@ finishButtons.forEach((button) => {
 const interestForm = document.querySelector('#interest-form');
 const formNote = document.querySelector('#form-note');
 
+const referralSource = document.querySelector('#referral-source');
+const referralOtherFields = document.querySelector('#referral-other-fields');
+const referralOther = document.querySelector('#referral-other');
+
+function updateReferralFields() {
+  if (!referralSource || !referralOtherFields || !referralOther) return;
+  const isOther = referralSource.value === 'Other';
+  referralOtherFields.hidden = !isOther;
+  referralOther.disabled = !isOther;
+}
+
+updateReferralFields();
+referralSource?.addEventListener('change', updateReferralFields);
+interestForm?.addEventListener('reset', () => queueMicrotask(updateReferralFields));
+
 if (new URLSearchParams(window.location.search).get('submitted') === '1' && formNote) {
   formNote.textContent = 'Thank you! Your request has been sent to Carolina Nail Academy.';
   formNote.classList.add('is-success');
