@@ -370,7 +370,7 @@
         color: var(--lime);
       }
     </style>
-    <script defer="defer" src="script.js?v=finish-library"></script>
+    <script defer="defer" src="script.js?v=referral-source"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -1000,6 +1000,29 @@
                 <option>Schedule a tour</option>
               </select></label
             ><label
+              >How did you hear about us? (optional)<select
+                id="referral-source"
+                name="How did you hear about us?"
+              >
+                <option value="">Please select</option>
+                <option>TikTok</option>
+                <option>Facebook</option>
+                <option>Instagram</option>
+                <option>Google Search / Maps</option>
+                <option>Friend or family</option>
+                <option>Other</option>
+              </select></label
+            >
+            <div id="referral-other-fields">
+              <label
+                >Other source (optional)<input
+                  id="referral-other"
+                  name="Other referral source"
+                  maxlength="200"
+                  placeholder="Where did you hear about us?"
+              /></label>
+            </div>
+            <label
               >Message<textarea
                 name="message"
                 rows="4"
