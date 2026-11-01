@@ -6,10 +6,10 @@ Brand-led static website for Carolina Nail Academy, built around the academy's c
 
 - Responsive one-page design with desktop and mobile navigation
 - Circular business logo and pink-bottle campaign wordmark
-- Program, state board preparation, experience, career path, and admissions sections
+- Program, free state board preparation, Gel-X certification, student services, experience, career path, and admissions sections
 - Interactive nail-finish studio
 - Keyboard-friendly controls, visible focus states, and reduced-motion support
-- Contact-interest form preview
+- Connected contact-interest form with optional preferred tour date and time
 - No third-party front-end dependencies
 - GitHub Pages friendly (`index.html` at the repository root)
 
@@ -32,4 +32,14 @@ Confirmed program information now included on the site:
 - Part-time evening program: 25 weeks, Monday–Thursday, 6:00 PM–9:00 PM, 12 hours per week
 - 3027 Platt Springs Rd, West Columbia, SC 29170
 
-The contact form is intentionally in preview mode and does not send submissions yet.
+Student-performed service information now included on the site:
+
+- Monday-Thursday service hours: 10:00 AM-12:00 PM, 1:00 PM-3:00 PM, and 7:00 PM-9:00 PM
+- Manicures: $15
+- Pedicures: $25
+- Artificial nails: $35
+- Gel polish: included with service
+- Nail repair or replacement: $5 each
+- Polish-only service: $10
+
+The contact form submits to `info@carolinanailacademy.com` through FormSubmit. Preferred tour dates and times are requests only; the academy confirms availability directly.
