@@ -112,6 +112,12 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     event.preventDefault();
     closeMenu();
 
+    const topic = link.dataset.interest;
+    const inquiryTopic = topic && target.querySelector('select[name="interest"]');
+    if (inquiryTopic) {
+      inquiryTopic.value = topic;
+    }
+
     const headerHeight = header?.offsetHeight || 0;
     const destination = href === '#home'
       ? 0
